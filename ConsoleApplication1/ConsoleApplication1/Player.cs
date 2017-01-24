@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+
 namespace PigDice
 {
 	public class Player
@@ -7,7 +9,7 @@ namespace PigDice
 
 		private int turnTotal = 0;
 
-		private int gameScore = 0;
+		private int gameScore = 80;
 
 		private Dice firstDice;
 
@@ -109,7 +111,16 @@ namespace PigDice
 			int secondRoll = 0;
 
 			firstRoll = firstDice.Roll();
-			secondRoll = secondDice.Roll();
+            //Pauses in between methods for a certain time so the second roll is never equal to the first
+            //opposed to it always rolling two same numbers because two Random methods initiate at the same time or back to back
+            Console.Write("Rolling Dice");
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(300);
+                Console.Write(".");
+            }
+
+            secondRoll = secondDice.Roll();
 
 			if (firstRoll == 1 || secondRoll == 1)
 			{
@@ -121,7 +132,6 @@ namespace PigDice
 			{
 				turnScore = firstRoll + secondRoll;
 				turnTotal = turnTotal + turnScore;
-				//gameScore = gameScore + turnScore;
 			}
 
 			isWinner = win();

@@ -9,7 +9,7 @@ namespace PigDice
 
 		private int turnTotal = 0;
 
-		private int gameScore = 80;
+		private int gameScore = 0;
 
 		private Dice firstDice;
 
